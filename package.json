@@ -1,0 +1,17 @@
+{
+  "name": "hattie-discord-bot",
+  "version": "1.0.0",
+  "description": "Support and utils discord bot for Hattie.host",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "itIsMaku",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.14.37",
+    "discord-akairo": "github:1Computer1/discord-akairo",
+    "discord.js": "github:discordjs/discord.js",
+    "node-color-log": "^5.2.0"
+  }
+}
