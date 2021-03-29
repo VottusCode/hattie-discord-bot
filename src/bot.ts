@@ -1,31 +1,28 @@
-import { MessageEmbed } from "discord.js";
-import { GuildMember } from "discord.js";
-import Client from "./client/client";
-import { token, owner } from "./config";
-import { logger } from "./utils/Logger";
-import * as Discord from "discord.js";
-import { TextChannel } from "discord.js";
+import Client from './client/client';
+import { logger } from './framework';
+import { token, owner, roles } from '../config.json';
+import Discord, { TextChannel, GuildMember } from 'discord.js';
 
-const client: Client = new Client({ token, owner });
-logger.color("blue").log("Starting bot...");
-client.start();
-client.on("guildMemberAdd", (member: GuildMember) => {
-  let role = member.guild.roles.cache.find(
-    (role) => role.id === "825973979906441226"
-  );
+const client = new Client({ token, owner });
 
-  const channel = member.guild.channels.cache.find(
-    (channel) => channel.name === "general"
-  );
+logger.info('Starting bot...');
 
-  const joinembed = new Discord.MessageEmbed()
+client.on('guildMemberAdd', async (member: GuildMember) => {
+  const channel = member.guild.channels.cache.find(channel => channel.name === 'general');
+
+  const joinEmbed = new Discord.MessageEmbed()
     .setTitle(`New member (${member.guild.memberCount})`)
     .setDescription(`Welcome ${member}!`)
-    .setColor("#FF0000");
+    .setColor('#FF0000');
 
-  (channel as TextChannel).send(joinembed);
+  await member.roles.add(roles.member);
 
-  member.roles.add(role).catch(console.error);
-  console.log(`${member} joined to the server.`);
-  console.log(`Role: ${role}`);
+  console.log(`${member.nickname} joined the server.`);
+  (channel as TextChannel).send(joinEmbed);
 });
+
+client.on('ready', () => {
+  console.log('Bot ready!');
+});
+
+client.start();

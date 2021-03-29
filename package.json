@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^14.14.37",
+    "chalk": "^4.1.0",
     "discord-akairo": "github:1Computer1/discord-akairo",
-    "discord.js": "github:discordjs/discord.js",
-    "node-color-log": "^5.2.0"
+    "discord.js": "^12.5.1",
+    "glob": "^7.1.6",
+    "node-color-log": "^5.2.0",
+    "winston": "^3.3.3"
   }
 }
